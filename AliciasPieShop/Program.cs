@@ -29,4 +29,6 @@ if (app.Environment.IsDevelopment())
 
 app.MapDefaultControllerRoute();        // endpoint middleware (component 3) - let MVC controllers handle requests
 
+DbInitializer.Seed(app);                // fill our database with seed data if it is otherwise empty! (DbInitializer is a static class)
+
 app.Run();          // all sorted, let's run this thing baby
