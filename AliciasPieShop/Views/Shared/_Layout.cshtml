@@ -16,8 +16,8 @@
                 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary"
                      aria-label="Bethany's Pie Shop navigation header">
                     <div class="container-xl">
-                        <a class="navbar-brand">
-                        <h1>Alicia's knock off Pie Shop - now rated 2/5 for food hygiene!</h1>
+                        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                        <h2>Alicia's knock off Pie Shop - now rated 2/5 for food hygiene!</h2>
                         </a>
 
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -27,6 +27,13 @@
 
                         <div class="collapse navbar-collapse" id="navbarCollapse">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                                <li class="nav-item">
+                                    <a asp-controller="Home" asp-action="Index" class="nav-link">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Pie" asp-action="List" class="nav-link">Pies</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
