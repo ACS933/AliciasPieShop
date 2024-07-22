@@ -3,6 +3,7 @@ using AliciasPieShop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AliciasPieShop.Migrations
 {
     [DbContext(typeof(AliciasPieShopDbContext))]
-    partial class AliciasPieShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240722100154_AddShoppingCartItem")]
+    partial class AddShoppingCartItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
