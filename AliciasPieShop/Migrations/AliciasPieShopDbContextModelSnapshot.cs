@@ -87,6 +87,30 @@ namespace AliciasPieShop.Migrations
                     b.ToTable("Pies");
                 });
 
+            modelBuilder.Entity("AliciasPieShop.Models.ShoppingCartItem", b =>
+                {
+                    b.Property<int>("ShoppingCartItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShoppingCartItemId"));
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PieId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShoppingCartId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ShoppingCartItemId");
+
+                    b.HasIndex("PieId");
+
+                    b.ToTable("ShoppingCartItems");
+                });
+
             modelBuilder.Entity("AliciasPieShop.Models.Pie", b =>
                 {
                     b.HasOne("AliciasPieShop.Models.Category", "Category")
@@ -96,6 +120,17 @@ namespace AliciasPieShop.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("AliciasPieShop.Models.ShoppingCartItem", b =>
+                {
+                    b.HasOne("AliciasPieShop.Models.Pie", "Pie")
+                        .WithMany()
+                        .HasForeignKey("PieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pie");
                 });
 
             modelBuilder.Entity("AliciasPieShop.Models.Category", b =>
