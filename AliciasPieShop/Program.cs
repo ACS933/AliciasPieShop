@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IPieRepository, PieRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 // add shopping cart service. we invoke get cart every time we use the services, passing the service provider as a parameter
 builder.Services.AddScoped<IShoppingCart, ShoppingCart>(sp => ShoppingCart.GetCart(sp));
