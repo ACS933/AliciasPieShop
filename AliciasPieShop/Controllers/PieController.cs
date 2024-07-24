@@ -23,7 +23,7 @@ namespace AliciasPieShop.Controllers
         //    return View(pieListViewModel);
         //}
 
-        public ViewResult List(string category) 
+        public ViewResult List(string category)
         {
             IEnumerable<Pie> pies;
             string? currentCategory;

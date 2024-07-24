@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
 
 namespace AliciasPieShop.Models
 {
-    public class ShoppingCart: IShoppingCart
+    public class ShoppingCart : IShoppingCart
     {
         // we need to write concrete implementations of the attributes and methods of the IShoppingCart Interface to make this compile
 
@@ -38,7 +37,7 @@ namespace AliciasPieShop.Models
 
             // return a new shopping cart object with the DbContext as a parameter. also set the Id property to cartId
             return new ShoppingCart(context) { ShoppingCartId = cartId };
-            
+
         }
 
         public void AddToCart(Pie pie)
@@ -72,7 +71,7 @@ namespace AliciasPieShop.Models
             // check if pie to be removed is in the cart, i.e if there is an item in the ShoppingCartItems DbSet with matching PieId and CartId 
             var shoppingCartItem = _aliciasPieShopDbContext.ShoppingCartItems.FirstOrDefault(
                 s => s.Pie.PieId == pie.PieId && s.ShoppingCartId == ShoppingCartId);
-            
+
             var localQuantityLeft = 0;
 
             if (shoppingCartItem != null)
@@ -99,7 +98,7 @@ namespace AliciasPieShop.Models
             // return the ShoppingCartItems property, unless it is null
             // if it is null, we set the property to the items in the shoppingCartItems table where the cart Id matches this.ShoppingCartId
             return ShoppingCartItems ??= _aliciasPieShopDbContext.ShoppingCartItems.Where(c =>
-                c.ShoppingCartId == ShoppingCartId).Include(s => s.Pie).ToList();    
+                c.ShoppingCartId == ShoppingCartId).Include(s => s.Pie).ToList();
         }
 
         public void ClearCart()
