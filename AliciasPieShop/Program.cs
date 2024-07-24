@@ -17,6 +17,7 @@ builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddControllersWithViews();   // add framework services for .NET Core MVC
+builder.Services.AddRazorPages();             // add framwork servcies for Razor Pages
 builder.Services.AddDbContext<AliciasPieShopDbContext>(options =>
 {
     options.UseSqlServer(
@@ -38,6 +39,8 @@ if (app.Environment.IsDevelopment())
 
 app.MapDefaultControllerRoute();        // endpoint middleware (component 4) - let MVC controllers handle requests
                                         // {controller=Home}/{action=Index}/{id?}
+
+app.MapRazorPages();                    // add routing for razor pages, with Pages folder as the root endpoint
 
 DbInitializer.Seed(app);                // fill our database with seed data if it is otherwise empty! (DbInitializer is a static class)
 
