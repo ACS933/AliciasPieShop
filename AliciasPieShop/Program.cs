@@ -40,14 +40,15 @@ var app = builder.Build();                    // build application instance usin
 
 app.UseStaticFiles();           // pipeline component 1: look in wwwroot folder for static files
 app.UseSession();               // pipeline component 2: we need to slap this in here because we use sessions, which use cookies or something
-app.UseAuthentication();
+app.UseAuthentication();        // add middleware for authentication (logging in/out etc)
+app.UseAuthorization();         // add middleware for authorization (RBAC for resources/endpoints)
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();    // pipeline component 3: show errors page if we are in development mode
+    app.UseDeveloperExceptionPage();    // pipeline component 5: show errors page if we are in development mode
 }
 
-app.MapDefaultControllerRoute();        // endpoint middleware (component 4) - let MVC controllers handle requests
+app.MapDefaultControllerRoute();        // endpoint middleware (component 6) - let MVC controllers handle requests
                                         // {controller=Home}/{action=Index}/{id?}
 
 app.MapRazorPages();                    // add routing for razor pages, with Pages folder as the root endpoint
