@@ -31,5 +31,10 @@ namespace AliciasPieShop.Models
         {
             return _aliciasPieShopDbContext.Pies.FirstOrDefault(p => p.PieId == pieId);
         }
+
+        public IEnumerable<Pie> SearchPies(string searchQuery)
+        {
+            return _aliciasPieShopDbContext.Pies.Where(p => p.Name.Contains(searchQuery));
+        }
     }
 }

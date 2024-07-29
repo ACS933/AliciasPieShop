@@ -1,5 +1,6 @@
 using AliciasPieShop.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,11 @@ builder.Services.AddSession();
 // add HttpContextAcessor service as we use its interface in the GetCart method.
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddControllersWithViews();   // add framework services for .NET Core MVC
+
+// add framework services for .NET Core MVC, do not return responses containing endless reference cycles between tightly-coupled objects
+builder.Services.AddControllersWithViews().AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; }); 
+
+
 builder.Services.AddRazorPages();             // add framwork servcies for Razor Pages
 builder.Services.AddDbContext<AliciasPieShopDbContext>(options =>
 {
