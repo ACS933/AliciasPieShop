@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace AliciasPieShop.Models
 {
-    public class AliciasPieShopDbContext : DbContext
+    public class AliciasPieShopDbContext : IdentityDbContext
     {
         public AliciasPieShopDbContext(DbContextOptions<AliciasPieShopDbContext> options) : base(options) 
         {

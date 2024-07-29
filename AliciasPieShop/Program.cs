@@ -1,8 +1,10 @@
 using AliciasPieShop.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("AliciasPieShopDbContextConnection") ?? throw new InvalidOperationException("Connection string 'AliciasPieShopDbContextConnection' not found.");
 
 // REGISTER SERVICES WITH DI CONTAINER
 
@@ -29,6 +31,8 @@ builder.Services.AddDbContext<AliciasPieShopDbContext>(options =>
         builder.Configuration["ConnectionStrings:AliciasPieShopDbContextConnection"]);
 });
 
+builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AliciasPieShopDbContext>();
+
 
 var app = builder.Build();                    // build application instance using webappbuilder inst
 
@@ -36,6 +40,7 @@ var app = builder.Build();                    // build application instance usin
 
 app.UseStaticFiles();           // pipeline component 1: look in wwwroot folder for static files
 app.UseSession();               // pipeline component 2: we need to slap this in here because we use sessions, which use cookies or something
+app.UseAuthentication();
 
 if (app.Environment.IsDevelopment())
 {
